@@ -1,7 +1,6 @@
 # VBA Code Guidelines
 
 <!-- TOC -->
-
 - [VBA Code Guidelines](#vba-code-guidelines)
   - [General Advice](#general-advice)
   - [Parameters](#parameters)
@@ -50,7 +49,7 @@
   - [Error Handling](#error-handling)
     - [Generic error handler](#generic-error-handler)
     - [Error handling labels](#error-handling-labels)
-
+  - [Additional Reading](#additional-reading)
 <!-- /TOC -->
 
 ## General Advice
@@ -168,14 +167,17 @@ uppercase letter.
 | Prefix | Use                | Notes                             |
 | ------ | ------------------ | --------------------------------- |
 | None   | Local to procedure | No scope prefix as in: dblMaximum |
-| m\_    | Module level scope | m_strPolicyHolder                 |
-| g\_    | Global scope       | g_intCarsLast                     |
+| m      | Module level scope | mstrPolicyHolder                  |
+| p      | Public scope       | pintCarsLast                      |
+| g      | Global scope       | gintCarsLast (The use of global is legacy has been superseeded by public)|
 
 ### Tag
 
 The tag is the only required component, but in almost all cases the
 name will have the base name component since you need to be able to
 distinguish two objects of the same type.
+
+Nearly all legacy VBA code defines the 
 
 | Variable type     | Tag | Notes         |
 | ----------------- | --- | ------------- |
@@ -648,3 +650,9 @@ End Sub
 The labels **ErrHandler** and **ExitHere** are used both for
 consistency across routines, and to facilitate easier copying and
 pasting of error handlers between routines.
+
+## Additional Reading
+[The Reddick-Gray Unified Naming Conventions Version 1.01 _2006-2007 by David A. Gray, MB_](http://courseware.deadcodersociety.org/csis3470-application_development/Chapter%203%20-%20Coding%20and%20Testing/the-reddick-vba-naming-conventions.pdf)
+[Reddick Naming Convention 6.01 _1992-1999 by Greg Reddick_](http://www.xoc.net/downloads/rvbanc.pdf)
+[Making wrong code look wrong _MAY 11, 2005 by JOEL SPOLSKY_](https://www.joelonsoftware.com/2005/05/11/making-wrong-code-look-wrong/)
+[A rant against flow control macros](https://devblogs.microsoft.com/oldnewthing/20050106-00/?p=36783)
