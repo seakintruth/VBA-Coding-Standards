@@ -519,7 +519,7 @@ Code must be indented consistently adhering to the following rules:
 Private mstrTest as String
 Sub Example()
     Dim wrk as Workspace
-    On Error Goto ErrHandler
+    On Error Goto HandleError
     If strTest = "" Then
         strTest = "Nothing"
     Else
@@ -540,7 +540,7 @@ Sub Example()
     End Select
 ExitHere:
     Exit Sub
-ErrHandler:
+HandleError:
     Resume ExitHere
 End Sub
 ```
