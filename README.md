@@ -499,7 +499,8 @@ code is worked on by more than one person.
 
 Code must be indented consistently adhering to the following rules:
 
-- Declarations must not be indented.
+- Functions and subroutines must not be indented.
+- Modulare and Public declarations must not be indented
 - On Error statements and line labels/numbers must not be indented.
 - Start code indented to one tab stop.
 - Code within If-Else-EndIf, For-Next, Do While/Until and any other
@@ -508,15 +509,17 @@ Code must be indented consistently adhering to the following rules:
   further tab stop.
 - Case statements must be indented to one stop after the Select Case.
   Code following the Case statements must be indented a further Tab
-  stop.
+  stop, End Select is reduced a Tab stop.
 - Code between With and End With statements must be indented by one
   tab stop.
-- Code within error trap must be indented by to one tab stop. Example
+- Code within error trap must be indented by to one tab stop. 
 
+### Indentation - examples
 ```vba
-Dim strTest as String
-Dim wrk as Workspace
-On Error Goto ErrHandler
+Private mstrTest as String
+Sub Example()
+    Dim wrk as Workspace
+    On Error Goto ErrHandler
     If strTest = "" Then
         strTest = "Nothing"
     Else
@@ -534,11 +537,12 @@ On Error Goto ErrHandler
             <code block>
         Case Else
             <code block>
-        End Select
+    End Select
 ExitHere:
     Exit Sub
 ErrHandler:
     Resume ExitHere
+End Sub
 ```
 
 ## Commenting Code
@@ -608,6 +612,8 @@ These can be useful for including/excluding debug code etc. For
 example:
 
 ```vba
+'Enter conditional compilation arguments in the properties of the project (each seperated by ':')
+'OR
 #Const DebugMode = True
 #IF  DebugMode THEN
     <code block>
@@ -624,14 +630,14 @@ Consistent error handlers must be implemented. The following error
 handler should be used:
 
 ```vba
-On Error GoTo ErrHandler
+On Error GoTo HandleError
     <code block>
 
 ExitHere:
 On Error Resume Next
     <code block>
 Exit Sub
-ErrHandler:
+HandleError:
     [WriteErrLog Err.Number]
         Select Case Err.Number
             Case <Err No>
@@ -647,7 +653,7 @@ End Sub
 
 ### Error handling labels
 
-The labels **ErrHandler** and **ExitHere** are used both for
+The labels **HandleError** and **ExitHere** are used both for
 consistency across routines, and to facilitate easier copying and
 pasting of error handlers between routines.
 
